@@ -35,6 +35,7 @@ ENV TZ=Europe/Oslo
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
 COPY --from=builder /work/_out/app /
+COPY --from=builder /work/migrations /migrations
 
 # Command to run
 ENTRYPOINT ["/app"]
