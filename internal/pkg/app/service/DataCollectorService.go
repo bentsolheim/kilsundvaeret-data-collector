@@ -58,6 +58,7 @@ func (s DataCollectorService) CollectDataFromMet() error {
 	if err != nil {
 		return stacktrace.Propagate(err, "error while getting most recent immediate forecast")
 	}
+	log.Debugf("%+v", forecast)
 	updatedAt, err := time.Parse("2006-01-02T15:04:05Z", forecast.UpdatedAt)
 	if err != nil {
 		return stacktrace.Propagate(err, "unable to parse UpdatedAt date %s", forecast.UpdatedAt)
