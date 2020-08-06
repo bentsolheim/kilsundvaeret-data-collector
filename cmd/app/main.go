@@ -4,7 +4,6 @@ import (
 	"github.com/bentsolheim/kilsundvaeret-data-collector/internal/pkg/app"
 	"github.com/bentsolheim/kilsundvaeret-data-collector/internal/pkg/app/service"
 	_ "github.com/go-sql-driver/mysql"
-	_ "github.com/golang-migrate/migrate/source/file"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -22,7 +21,7 @@ func run() error {
 		return err
 	}
 
-	db, err := app.ConnectAndMigrateDatabase(config.DbConfig)
+	db, err := app.ConnectToDatabase(config.DbConfig)
 	if err != nil {
 		return err
 	}
