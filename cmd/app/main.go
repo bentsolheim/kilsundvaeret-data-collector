@@ -32,5 +32,6 @@ func run() error {
 	sensorReadingService := service.SensorReadingsService{Db: db}
 	dataCollectorService := service.NewDataCollectorService(dataReceiverService, metService, sensorReadingService)
 
-	return dataCollectorService.CollectData()
+	dataCollectorService.CollectData()
+	return nil
 }

@@ -20,19 +20,21 @@ type DataCollectorService struct {
 	sensorReadingService SensorReadingsService
 }
 
-func (s DataCollectorService) CollectData() error {
-	log.Info("Collecting data from DataReceiver")
-	if err := s.CollectDataFromDataReceiver(); err != nil {
-		return stacktrace.Propagate(err, "error while collecting data from DataReceiver")
-	}
-	log.Info("Collecting data from DataReceiver successfully completed")
+func (s DataCollectorService) CollectData() {
 
 	log.Info("Collecting data from met.no")
 	if err := s.CollectDataFromMet(); err != nil {
-		return stacktrace.Propagate(err, "error while collecting data from met.no")
+		log.Error(stacktrace.Propagate(err, "error while collecting data from met.no"))
+	} else {
+		log.Info("Collecting data from met.no successfully completed")
 	}
-	log.Info("Collecting data from met.no successfully completed")
-	return nil
+
+	log.Info("Collecting data from DataReceiver")
+	if err := s.CollectDataFromDataReceiver(); err != nil {
+		log.Error(stacktrace.Propagate(err, "error while collecting data from DataReceiver"))
+	} else {
+		log.Info("Collecting data from DataReceiver successfully completed")
+	}
 }
 
 func (s DataCollectorService) CollectDataFromDataReceiver() error {
