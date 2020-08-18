@@ -56,7 +56,9 @@ func (s DataCollectorService) CollectDataFromDataReceiver() error {
 
 func (s DataCollectorService) CollectDataFromMet() error {
 
-	forecast, err := s.metService.GetMostRecentImmediateForecast("58.55288", "8.97572")
+	// Got coordinates from https://www.yr.no/api/v0/locations/1-14854?language=nb which is what you get if you
+	// visit Kilsund at yr.no
+	forecast, err := s.metService.GetMostRecentImmediateForecast("58.55322", "8.97692", "26")
 	if err != nil {
 		return stacktrace.Propagate(err, "error while getting most recent immediate forecast")
 	}

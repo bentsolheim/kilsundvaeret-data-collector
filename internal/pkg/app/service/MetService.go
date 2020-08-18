@@ -64,8 +64,8 @@ type InstantForecastWrapper struct {
 	UpdatedAt string
 }
 
-func (s MetService) GetMostRecentImmediateForecast(lat string, lon string) (*InstantForecastWrapper, error) {
-	forecast, err := s.LoadForecast(lat, lon)
+func (s MetService) GetMostRecentImmediateForecast(lat string, lon string, alt string) (*InstantForecastWrapper, error) {
+	forecast, err := s.LoadForecast(lat, lon, alt)
 	if err != nil {
 		return nil, err
 	}
@@ -77,8 +77,8 @@ func (s MetService) GetMostRecentImmediateForecast(lat string, lon string) (*Ins
 	}, nil
 }
 
-func (s MetService) LoadForecast(lat string, lon string) (*LocationForecast20Response, error) {
-	url := fmt.Sprintf("%s/api/v1/met/location-forecast?lat=%s&lon=%s", s.metProxyUrl, lat, lon)
+func (s MetService) LoadForecast(lat string, lon string, alt string) (*LocationForecast20Response, error) {
+	url := fmt.Sprintf("%s/weatherapi/locationforecast/2.0/compact?lat=%s&lon=%s&altitude=%s", s.metProxyUrl, lat, lon, alt)
 	log.Debugf("Getting forecast from %s", url)
 	res, err := http.Get(url)
 	if err != nil {
