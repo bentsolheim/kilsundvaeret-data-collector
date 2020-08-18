@@ -67,7 +67,7 @@ func (s DataCollectorService) CollectDataFromMet() error {
 	if err != nil {
 		return stacktrace.Propagate(err, "unable to parse UpdatedAt date %s", forecast.UpdatedAt)
 	}
-	details := forecast.Details
+	details := forecast.Data.Instant.Details
 	readings := map[string]float32{
 		"air-temperature":           details.AirTemperature,
 		"relative-humidity":         details.RelativeHumidity,

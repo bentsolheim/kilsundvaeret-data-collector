@@ -4,6 +4,8 @@ github.com/bentsolheim/go-app-utils v0.0.0-20200527185153-2e63cdf39c8d h1:smpheE
 github.com/bentsolheim/go-app-utils v0.0.0-20200527185153-2e63cdf39c8d/go.mod h1:gvibDb0VTGZDSWmUndInYf+JbgmDUzirEPin2OlEBGE=
 github.com/bentsolheim/go-app-utils v0.0.0-20200805191538-cce0f9742405 h1:6yBYZk4r2e3fb09zGtiKMVZfIZpY2qKhUl60jcDveLY=
 github.com/bentsolheim/go-app-utils v0.0.0-20200805191538-cce0f9742405/go.mod h1:gvibDb0VTGZDSWmUndInYf+JbgmDUzirEPin2OlEBGE=
+github.com/bentsolheim/go-app-utils v0.0.0-20200813200936-422c8ca0c399 h1:vwZVks0W3qiS3Sh0QYMj6yvDhx3m+3aXfmzbrF4i4GQ=
+github.com/bentsolheim/go-app-utils v0.0.0-20200813200936-422c8ca0c399/go.mod h1:B7sdjA8DvyPwIhO1UvadNQtmbWZPUDgWsQxvPOtkKuM=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
