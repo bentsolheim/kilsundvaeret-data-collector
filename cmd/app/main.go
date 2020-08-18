@@ -28,7 +28,7 @@ func run() error {
 	defer db.Close()
 
 	dataReceiverService := service.NewDataReceiverService(config.DataReceiverUrl)
-	metService := service.NewMetService(config.MetProxyUrl)
+	metService := service.NewMetService(config.MetProxyUrl, nil)
 	sensorReadingService := service.SensorReadingsService{Db: db}
 	dataCollectorService := service.NewDataCollectorService(dataReceiverService, metService, sensorReadingService)
 

@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 )
 
 func TestMetService_GetMostRecentImmediateForecast(t *testing.T) {
@@ -26,16 +27,19 @@ func TestMetService_GetMostRecentImmediateForecast(t *testing.T) {
 	}))
 	defer ts.Close()
 
-	metService := service.NewMetService(ts.URL)
+	metService := service.NewMetService(ts.URL, func() time.Time {
+		return time.Date(2020, time.August, 19, 0, 15, 0, 0, nil)
+	})
 	forecast, err := metService.GetMostRecentImmediateForecast("58.55322", "8.97692", "26")
 	if err != nil {
 		t.Errorf("Should not fail: %s", err)
 	}
-	if forecast.UpdatedAt != "2020-07-30T08:54:10Z" {
+	if forecast.UpdatedAt != "2020-08-18T20:58:25Z" {
 		t.Errorf("Unexpected UpdatedAt %s", forecast.UpdatedAt)
 	}
-	if forecast.Details.AirTemperature != 18.7 {
-		t.Errorf("Unexpected AirTemperature %f", forecast.Details.AirTemperature)
+	temperature := forecast.Data.Instant.Details.AirTemperature
+	if temperature != 19.6 {
+		t.Errorf("Unexpected AirTemperature %f", temperature)
 	}
 	//println(fmt.Sprintf("%+v", forecast))
 }

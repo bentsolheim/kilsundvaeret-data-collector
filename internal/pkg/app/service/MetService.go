@@ -60,12 +60,18 @@ type InstantDetails struct {
 	//WindSpeedOfGust          float32 `json:"wind_speed_of_gust"`
 }
 
-func NewMetService(metProxyUrl string) MetService {
-	return MetService{metProxyUrl: metProxyUrl}
+func defaultNow() time.Time { return time.Now() }
+
+func NewMetService(metProxyUrl string, nowFunc func() time.Time) MetService {
+	if nowFunc == nil {
+		nowFunc = defaultNow
+	}
+	return MetService{metProxyUrl: metProxyUrl, nowFunc: nowFunc}
 }
 
 type MetService struct {
 	metProxyUrl string
+	nowFunc     func() time.Time
 }
 
 type InstantForecastWrapper struct {
